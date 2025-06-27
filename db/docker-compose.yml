@@ -1,0 +1,24 @@
+services:
+  db:
+    image: ${IMAGE_NAME}
+    container_name: ${CONTAINER_NAME}
+    build:
+      context: .
+      dockerfile: Dockerfile
+    environment:
+      POSTGRES_NAME: ${POSTGRES_NAME}
+      POSTGRES_USER: ${POSTGRES_USER}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+      TZ: ${POSTGRES_TZ}
+    volumes:
+      - .data:/var/lib/postgresql/data
+    ports:
+      - ${HOST_POSTGRESQL_PORT}:${POSTGRES_PORT}
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+networks:
+  default:
+    name: tp-db-net

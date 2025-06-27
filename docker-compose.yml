@@ -1,0 +1,12 @@
+services:
+  demo-api-server:
+    image: tp-cache-interna:latest
+    container_name: tp-cache-interna
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - 8080:8080
+networks:
+  default:
+    name: tp-db-net
