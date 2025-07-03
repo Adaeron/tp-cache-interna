@@ -18,10 +18,8 @@ public interface AeropuertoRepository extends JpaRepository<Aeropuerto, UUID>{
     @Query(value = """
             INSERT INTO aeropuerto (id, nombre, ciudad, pais)
             VALUES (:id, :nombre, :ciudad, :pais)
-            ON CONFLICT (nombre, ciudad, pais) DO UPDATE SET
-                nombre = :nombre,
-                ciudad = :ciudad,
-                pais = :pais
+            ON CONFLICT ON CONSTRAINT unique_nombre_ciudad_pais DO UPDATE SET
+                nombre = :nombre 
             RETURNING id, nombre, ciudad, pais, optlock
             """, nativeQuery = true)
     Object[] upsertAeropuerto(@Param("id") UUID id,

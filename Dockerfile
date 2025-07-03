@@ -20,4 +20,6 @@ COPY --from=maven /usr/src/app/target/${JAR_FILE} /opt/app/
 
 EXPOSE 8080
 
-ENTRYPOINT ["java","-jar","tp-cache-interna.jar"]
+ENV JAVA_OPTS=""
+
+ENTRYPOINT java $JAVA_OPTS -jar tp-cache-interna.jar

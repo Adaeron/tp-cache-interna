@@ -1,12 +1,15 @@
 services:
-  demo-api-server:
+  tp-cache-interna:
     image: tp-cache-interna:latest
     container_name: tp-cache-interna
     build:
       context: .
       dockerfile: Dockerfile
+    environment:
+      - JAVA_OPTS=-agentlib:jdwp=transport=dt_socket,address=0.0.0.0:5000,server=y,suspend=n
     ports:
       - 8080:8080
+      - 5000:5000
 networks:
   default:
     name: tp-db-net

@@ -22,9 +22,8 @@ public class Avion implements Serializable {
 	
 	@Column(name = "numero_serie")
 	private String numeroSerie;
-	private String empresa;
 	@Column(name = "nombre_tipo_de_avion")
-	private UUID nombreTipoDeAvion;
+	private String nombreTipoDeAvion;
 	@Column(name = "total_de_asientos")
 	private Integer totalAsientos;
 	
@@ -46,19 +45,11 @@ public class Avion implements Serializable {
 		this.numeroSerie = numeroSerie;
 	}
 
-	public String getEmpresa() {
-		return empresa;
-	}
-
-	public void setEmpresa(String empresa) {
-		this.empresa = empresa;
-	}
-
-	public UUID getNombreTipoDeAvion() {
+	public String getNombreTipoDeAvion() {
 		return nombreTipoDeAvion;
 	}
 
-	public void setNombreTipoDeAvion(UUID nombreTipoDeAvion) {
+	public void setNombreTipoDeAvion(String nombreTipoDeAvion) {
 		this.nombreTipoDeAvion = nombreTipoDeAvion;
 	}
 
